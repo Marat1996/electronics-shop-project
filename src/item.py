@@ -53,7 +53,9 @@ class Item:
 
         :param file_path: Путь к CSV-файлу с данными.
         """
-        with open(file_path, 'r', newline='', encoding='utf-8') as file:
+        cls.all.clear()
+
+        with open(file_path, 'r', encoding='windows-1251') as file:
             reader = csv.DictReader(file)
             for row in reader:
                 name = row['name']
@@ -62,15 +64,11 @@ class Item:
                 cls(name, price, quantity)
 
     @staticmethod
-    def string_to_number(value: str) -> float:
+    def string_to_number(value: str) -> int:
         """
         Преобразует строку в число.
 
         :param value: Строка, представляющая число.
         :return: Преобразованное число.
         """
-        return float(value)
-
-
-# Пример использования
-Item.instantiate_from_csv('src/items.csv')
+        return int(float(value))
