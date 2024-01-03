@@ -72,3 +72,7 @@ class Item:
         :return: Преобразованное число.
         """
         return int(float(value))
+
+    @classmethod
+    def clear_all_items(cls):
+        cls.all.clear()
