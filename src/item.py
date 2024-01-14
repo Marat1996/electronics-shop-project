@@ -76,3 +76,15 @@ class Item:
     @classmethod
     def clear_all_items(cls):
         cls.all.clear()
+
+    def __repr__(self) -> str:
+        """
+        Возвращает строковое представление объекта для использования в консоли и дебаге.
+        """
+        return f"Item('{self.name}', {self.price}, {self.quantity})"
+
+    def __str__(self) -> str:
+        """
+        Возвращает строковое представление объекта для отображения пользователю.
+        """
+        return self.name
