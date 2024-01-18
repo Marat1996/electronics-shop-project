@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pytest
+
 from src.item import Item
 
 
@@ -64,10 +65,15 @@ def test_clear_all_items():
 
     assert len(Item.all) == 0
 
+
 def test_item_repr():
     item = Item("Смартфон", 10000, 20)
     assert repr(item) == "Item('Смартфон', 10000, 20)"
 
+
 def test_item_str():
     item = Item("Смартфон", 10000, 20)
     assert str(item) == 'Смартфон'
+
+
+
