@@ -89,4 +89,13 @@ class Item:
         """
         return self.name
 
+    def __add__(self, other) -> int:
+        """
+        Переопределение оператора + для сложения объектов класса Item.
 
+        :param other: Другой объект класса Item или его потомка.
+        :return: Суммарное количество товара.
+        """
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        return NotImplemented

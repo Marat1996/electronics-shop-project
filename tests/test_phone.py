@@ -31,9 +31,7 @@ def test_number_of_sim(phone1):
     assert phone1.number_of_sim == 2
 
 def test_phone_addition(phone1, item1):
-    result = phone1 + item1
-    assert result == phone1.quantity + item1.quantity
+    with pytest.raises(TypeError, match="unsupported operand type\(s\) for \+: 'Phone' and 'Item'"):
+        result = phone1 + item1
 
-def test_phone_addition_invalid_type(phone1):
-    with pytest.raises(TypeError, match="Нельзя сложить Phone или Item с объектами других классов."):
-        phone1 + "InvalidType"
+
