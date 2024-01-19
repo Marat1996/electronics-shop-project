@@ -32,3 +32,5 @@ class Phone(Item):
         Возвращает строковое представление объекта для использования в консоли и дебаге.
         """
         return f"Phone('{self.name}', {self.price}, {self.quantity}, {self.number_of_sim})"
+
+
