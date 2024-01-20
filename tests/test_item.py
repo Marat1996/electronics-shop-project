@@ -1,8 +1,9 @@
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
 
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 
 
 @pytest.fixture
@@ -75,5 +76,15 @@ def test_item_str():
     item = Item("Смартфон", 10000, 20)
     assert str(item) == 'Смартфон'
 
+    def test_instantiate_from_csv_file_not_found_exception_handling(self):
+        with patch("builtins.open", side_effect=FileNotFoundError("File not found")):
+            with self.assertRaises(FileNotFoundError) as context:
+                Item.instantiate_from_csv('nonexistent_file.csv')
+            self.assertEqual(str(context.exception), "Отсутствует файл nonexistent_file.csv")
 
+    def test_instantiate_from_csv_file_corrupted_exception_handling(self):
+        with patch("builtins.open", side_effect=IOError("File is corrupted")):
+            with self.assertRaises(InstantiateCSVError) as context:
+                Item.instantiate_from_csv('corrupted_file.csv')
+            self.assertEqual(str(context.exception), "Файл item.csv поврежден")
 
